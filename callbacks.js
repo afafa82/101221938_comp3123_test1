@@ -1,19 +1,19 @@
-function resolvedPromise() {
-  setTimeout(function () {
-    let success = { message: "delayed success!" };
-    console.log(success);
-  }, 500);
-}
+const resolvedPromise = () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let message = { message: "delay success!" };
+      resolve(message);
+    }, 500);
+  });
 
-function rejectedPromise() {
-  setTimeout(function () {
-    try {
-      throw new Error("error: delayed exeception!");
-    } catch (e) {
-      console.error(e);
-    }
-  }, 500);
-}
+const rejectPromise = () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let message = { message: "delay exception!" };
+      reject(message);
+    }, 500);
+  });
 
-resolvedPromise();
-rejectedPromise();
+resolvedPromise().then((message) => console.log(message));
+rejectPromise().catch((message) => console.log(message));
+

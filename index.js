@@ -11,9 +11,13 @@ try {
     console.log(fileName);
     files.push(fileName);
   }
-  for (const file of files) {
-    fs.unlinkSync("./Logs/" + file);
-    console.log("delete files..." + file);
+  if (files.length != 0) {
+    for (const file of files) {
+      fs.unlinkSync("./Logs/" + file);
+      console.log("delete files..." + file);
+    }
+  } else {
+    alert("file does not exist!");
   }
 
   // fs.rmdirSync("Logs", { recursive: true });
